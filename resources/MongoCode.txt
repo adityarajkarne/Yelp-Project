@@ -1,0 +1,15 @@
+
+#code to generate random set of rows.
+
+db.reviews_subset_random_1.insert(db.reviews.find({'votes.useful':{$gt:0}}).limit(3000).skip(rand()).toArray())
+
+var rand = function(){return Math.floor( Math.random() * db.reviews.find().count())}
+
+ 
+mongoexport -port 12222 --db yelpdb --collection reviews_subset_random_1 --csv -f review_id,user_id,business_id,stars,date,text,votes.funny,votes.cool,votes.useful --out random_reviews_subset.csv
+
+
+db.reviews.find({rand: {$exists : false }}).forEach(function(mydoc) {db.reviews.update({_id: mydoc._id}, {$set: {rand: Math.random()}})});
+
+
+mongo localhost:12222/yelpdb script.js > random_reviews.json

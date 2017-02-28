@@ -1,0 +1,48 @@
+
+##R script to create data frame and write to CSV.
+
+reviews_processed <- read.csv(file=file.choose(),header=T, sep=",")
+
+reviews <- read.csv(file=file.choose(),header=T,sep=",")
+
+reviews_final <- merge(reviews_processed, reviews, by="review_id")
+
+
+write.csv(reviews_final,file="E:\\Marshal\\Masters\\Search\\Yelp\\reviews\\review_final.csv")
+
+
+business <- read.csv(file=file.choose(),header=T, sep=",")
+
+users <- read.csv(file=file.choose(),header=T, sep=",")
+
+write.csv(reviews_usr_bus_final_13k,file="E:\\Marshal\\Masters\\Search\\Yelp\\reviews\\reviews_usr_bus_final_13k.csv")
+
+
+dates.frame <- reviews_bus_usrs_final$date
+
+reviews_bus_usrs_final <- read.csv(file=file.choose(),header=T,sep=",")
+
+ usr_dates <- as.Date(usr_yelp_since)
+
+usr_yelp_since <- reviews_bus_usrs_final$yelping_since
+
+
+user_yelp_age_epoch <- as.integer(as.POSIXct(usr_dates))
+
+review_age <- reviews_bus_usrs_final$date
+review_age <- as.Date(review_age,"%m/%d/%Y")
+
+
+review_yelp_age_epoch <- as.integer(as.POSIXct(usr_dates))
+
+
+reviews_processed_13000 <- read.csv(file=file.choose(),header=T, sep=",")
+
+reviews_13000 <- read.csv(file=file.choose(),header=T, sep=",")
+
+reviews_final_13k <- merge(reviews_processed_13000, reviews_13000, by="review_id")
+
+reviews_usr_final_13k <- merge(reviews_final_13k, users, by="user_id")
+
+reviews_usr_bus_final_13k <- merge(reviews_usr_final_13k, business, by="business_id")
+
